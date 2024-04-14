@@ -9,19 +9,40 @@ namespace  ConsoleApp1
     {
         static void Main(string[] args)
         {
-           Console.Write("Enter your message: ");
+           Console.Write("Enter your password: ");
            string str = Console.ReadLine() ?? string.Empty;
-           string revStr = ReverseString(str) ;
-           Console.WriteLine("Reversed is equal to: ==>" + revStr);
+           string valid = PaawordChecker(str);
+           Console.WriteLine(valid);
            Console.ReadLine();
 
         }
 
-        static string ReverseString(string str)
+        static string PaawordChecker(string str)
         {
-            char[] charList = str.ToCharArray();
-            Array.Reverse(charList);
-            return new string(charList);
+            if(str.Length < 8)
+            {
+                return "Password is too short";
+            }
+            else if(str.Length > 20)
+            {
+                return "Password is too long";
+            }
+            else if(str.Contains(" "))
+            {
+                return "Password cannot contain spaces";
+            }
+            else if(str.Contains("password"))
+            {
+                return "Password cannot contain the word password";
+            }else if(str.Contains("123456"))
+            {
+                return "Password cannot contain 123456";
+            } 
+            else
+            {
+                return "Password is valid";
+            }
         }
+        
     }
 };                                   
